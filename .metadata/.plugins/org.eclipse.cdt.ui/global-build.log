@@ -1,0 +1,115 @@
+18:04:20 **** Build of configuration Debug for project lab1 ****
+make -j14 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f427vitx.d" -MT"Startup/startup_stm32f427vitx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f427vitx.o" "../Startup/startup_stm32f427vitx.s"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F427VITx -DSTM32 -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F427VITx -DSTM32 -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F427VITx -DSTM32 -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+../Src/main.c:22:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
+   22 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+      |    ^~~~~~~
+arm-none-eabi-gcc -o "lab1.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/rmb/itmo/4/1sem/pvs/lab1/STM32F427VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lab1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: lab1.elf
+ 
+arm-none-eabi-size   lab1.elf 
+arm-none-eabi-objdump -h -S  lab1.elf  > "lab1.list"
+   text	   data	    bss	    dec	    hex	filename
+    676	      8	   1568	   2252	    8cc	lab1.elf
+Finished building: default.size.stdout
+ 
+Finished building: lab1.list
+ 
+18:11:28 **** Incremental Build of configuration Debug for project lab1 ****
+make -j14 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F427VITx -DSTM32 -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c:36:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
+   36 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+      |    ^~~~~~~
+arm-none-eabi-gcc -o "lab1.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/rmb/itmo/4/1sem/pvs/lab1/STM32F427VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lab1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: lab1.elf
+ 
+arm-none-eabi-size   lab1.elf 
+arm-none-eabi-objdump -h -S  lab1.elf  > "lab1.list"
+   text	   data	    bss	    dec	    hex	filename
+    800	      8	   1568	   2376	    948	lab1.elf
+Finished building: default.size.stdout
+ 
+Finished building: lab1.list
+ 
+18:26:45 **** Incremental Build of configuration Debug for project lab1 ****
+make -j14 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F427VITx -DSTM32 -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c:36:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
+   36 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+      |    ^~~~~~~
+../Src/main.c:28:13: warning: 'delay' defined but not used [-Wunused-function]
+   28 | static void delay(volatile uint32_t ticks)
+      |             ^~~~~
+arm-none-eabi-gcc -o "lab1.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/rmb/itmo/4/1sem/pvs/lab1/STM32F427VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lab1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: lab1.elf
+ 
+arm-none-eabi-size   lab1.elf 
+arm-none-eabi-objdump -h -S  lab1.elf  > "lab1.list"
+   text	   data	    bss	    dec	    hex	filename
+    684	      8	   1568	   2260	    8d4	lab1.elf
+Finished building: default.size.stdout
+ 
+Finished building: lab1.list
+ 
+18:27:32 **** Incremental Build of configuration Debug for project lab1 ****
+make -j14 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F427VITx -DSTM32 -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c:36:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
+   36 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+      |    ^~~~~~~
+../Src/main.c: In function 'main':
+../Src/main.c:43:3: warning: implicit declaration of function 'HAL_GPIO_WritePin' [-Wimplicit-function-declaration]
+   43 |   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
+      |   ^~~~~~~~~~~~~~~~~
+../Src/main.c:43:21: error: 'GPIOD' undeclared (first use in this function)
+   43 |   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
+      |                     ^~~~~
+../Src/main.c:43:21: note: each undeclared identifier is reported only once for each function it appears in
+../Src/main.c:43:41: error: 'GPIO_PIN_RESET' undeclared (first use in this function); did you mean 'GPIO_PIN_13'?
+   43 |   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_RESET);
+      |                                         ^~~~~~~~~~~~~~
+      |                                         GPIO_PIN_13
+../Src/main.c:44:3: warning: implicit declaration of function 'HAL_Delay' [-Wimplicit-function-declaration]
+   44 |   HAL_Delay(500);
+      |   ^~~~~~~~~
+../Src/main.c:45:41: error: 'GPIO_PIN_SET' undeclared (first use in this function); did you mean 'GPIO_PIN_13'?
+   45 |   HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
+      |                                         ^~~~~~~~~~~~
+      |                                         GPIO_PIN_13
+At top level:
+../Src/main.c:28:13: warning: 'delay' defined but not used [-Wunused-function]
+   28 | static void delay(volatile uint32_t ticks)
+      |             ^~~~~
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+"make -j14 all" terminated with exit code 2. Build might be incomplete.
+18:27:51 **** Incremental Build of configuration Debug for project lab1 ****
+make -j14 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32F427VITx -DSTM32 -DSTM32F4 -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c:36:4: warning: #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use." [-Wcpp]
+   36 |   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
+      |    ^~~~~~~
+../Src/main.c:28:13: warning: 'delay' defined but not used [-Wunused-function]
+   28 | static void delay(volatile uint32_t ticks)
+      |             ^~~~~
+arm-none-eabi-gcc -o "lab1.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/rmb/itmo/4/1sem/pvs/lab1/STM32F427VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lab1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: lab1.elf
+ 
+arm-none-eabi-size   lab1.elf 
+arm-none-eabi-objdump -h -S  lab1.elf  > "lab1.list"
+   text	   data	    bss	    dec	    hex	filename
+    684	      8	   1568	   2260	    8d4	lab1.elf
+Finished building: default.size.stdout
+ 
+Finished building: lab1.list
+ 
+18:33:24 **** Incremental Build of configuration Debug for project lab1 ****
+make -j14 all 
+arm-none-eabi-size   lab1.elf 
+   text	   data	    bss	    dec	    hex	filename
+    684	      8	   1568	   2260	    8d4	lab1.elf
+Finished building: default.size.stdout
+ 
