@@ -6,4 +6,3 @@ set BOARDNAME SDK1_1_M
 reset_config srst_only
 set CONNECT_UNDER_RESET 1
 source [find target/stm32f4x.cfg]
-adapter speed 500

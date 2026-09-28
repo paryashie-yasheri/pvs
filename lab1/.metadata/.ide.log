@@ -1505,3 +1505,263 @@ Caused by: java.net.SocketException: Connection reset
 2026-09-28 19:35:19,053 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
 2026-09-28 19:35:19,054 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
 2026-09-28 19:35:21,706 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:38:29,276 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:38:29,278 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:38:29,280 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:38:29,282 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:38:29,283 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:38:29,284 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:38:29,286 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:38:29,288 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:38:29,289 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:38:29,291 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:38:29,292 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:38:29,294 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:39:18,014 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:39:18,016 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:39:18,018 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:39:18,020 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:39:18,022 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:39:18,024 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:39:18,026 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:39:18,028 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:39:18,029 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:39:18,030 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:39:18,032 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:39:18,033 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:39:21,628 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:40:22,998 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:40:33,452 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:41:18,354 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:41:20,846 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:41:30,906 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:41:37,830 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:41:52,307 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:41:53,789 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:43:34,629 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:44:50,973 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:44:50,982 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:05,065 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:05,067 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:05,069 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:05,071 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:05,072 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:05,075 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:05,076 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:05,078 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:05,081 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:05,083 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:05,085 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:05,087 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:08,992 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:45:19,802 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:19,807 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:19,811 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:19,814 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:19,816 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:19,818 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:19,820 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:19,822 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:19,823 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:19,825 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:19,826 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:19,828 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:45:21,834 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:45:23,840 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:45:25,844 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:46:16,652 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:46:16,655 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:46:16,657 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:46:16,658 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:46:16,661 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:46:16,663 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:46:16,664 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:46:16,666 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:46:16,668 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:46:16,669 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:46:16,671 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:46:16,672 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:46:22,747 [ERROR] AdobePublisher:162 - Exception while opening the connection: java.net.SocketTimeoutException: Read timed out
+2026-09-28 19:46:24,750 [ERROR] AdobePublisher:162 - Exception while opening the connection: java.net.SocketTimeoutException: Read timed out
+2026-09-28 19:47:05,879 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:47:05,883 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:47:05,887 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:47:05,908 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:47:05,910 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:47:05,913 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:47:05,915 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:47:05,918 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:47:05,921 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:47:05,923 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:47:05,925 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:47:05,928 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:48:55,916 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 500431856 Bytes (932184064)
+2026-09-28 19:48:57,913 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 596900848 Bytes (932184064)
+2026-09-28 19:48:59,155 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 698448976 Bytes (932184064)
+2026-09-28 19:48:59,262 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: SYS
+2026-09-28 19:48:59,262 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: RCC
+2026-09-28 19:48:59,262 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: NVIC
+2026-09-28 19:48:59,262 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: GPIO
+2026-09-28 19:48:59,262 [INFO] CodeGenerator:681 - code generatio: config db path: /home/rmb/Downloads/stm32cubeide-1.9.0-sandbox/plugins/com.st.stm32cube.common.mx_6.5.0.202202251913//db/
+2026-09-28 19:48:59,362 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/license.tmp_save
+2026-09-28 19:48:59,386 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/license.tmp
+2026-09-28 19:48:59,389 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/gpio.tmp_save
+2026-09-28 19:48:59,414 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/gpio.tmp
+2026-09-28 19:48:59,418 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/stm32f4xx_it.c_save
+2026-09-28 19:48:59,446 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/stm32f4xx_it.c
+2026-09-28 19:48:59,447 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/stm32f4xx_it.h_save
+2026-09-28 19:48:59,470 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/stm32f4xx_it.h
+2026-09-28 19:48:59,472 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/stm32f4xx_hal_msp.c_save
+2026-09-28 19:48:59,505 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/stm32f4xx_hal_msp.c
+2026-09-28 19:48:59,506 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/system.tmp_save
+2026-09-28 19:48:59,529 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/system.tmp
+2026-09-28 19:48:59,530 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/stm32f4xx_hal_conf.h_save
+2026-09-28 19:48:59,558 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/stm32f4xx_hal_conf.h
+2026-09-28 19:48:59,578 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/main.h_save
+2026-09-28 19:48:59,611 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/main.h
+2026-09-28 19:48:59,612 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/main.c_save
+2026-09-28 19:48:59,651 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/main.c
+2026-09-28 19:48:59,816 [INFO] ProjectBuilder:2913 - Time for Copy HAL[1] : 6mS.
+2026-09-28 19:48:59,817 [INFO] ProjectBuilder:4015 - Project Generator version: 3.16.0
+2026-09-28 19:48:59,987 [INFO] ConfigFileManager:1287 - The Die is : DIE419
+2026-09-28 19:49:00,415 [INFO] ProjectBuilder:4183 - Time for Generating toolchain IDE Files: 598mS.
+2026-09-28 19:49:00,415 [INFO] ProjectBuilder:2785 - Time for Copy CMSIS : 0mS.
+2026-09-28 19:49:00,415 [INFO] ProjectBuilder:2785 - Time for Copy CMSIS : 0mS.
+2026-09-28 19:49:01,002 [ERROR] ConfigurationRetriever:139 - IOException on connection: Connection reset
+2026-09-28 19:49:04,165 [ERROR] ConfigurationRetriever:139 - IOException on connection: Connection reset
+2026-09-28 19:49:06,626 [ERROR] ConfigurationRetriever:139 - IOException on connection: Connection reset
+2026-09-28 19:49:10,322 [ERROR] ConfigurationRetriever:139 - IOException on connection: Connection reset
+2026-09-28 19:49:11,190 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:49:11,193 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:49:11,196 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:49:11,198 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:49:11,199 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:49:11,201 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:49:11,202 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:49:11,203 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:49:11,204 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:49:11,205 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:49:11,207 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:49:11,208 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:49:13,787 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:49:17,869 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:50:16,859 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:16,861 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:16,862 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:16,864 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:16,866 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:16,867 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:16,869 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:16,871 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:16,872 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:16,874 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:16,875 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:16,877 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:21,274 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:50:24,493 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:50:51,483 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:50:54,229 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:54,231 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:54,233 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:54,234 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:54,236 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:54,238 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:54,240 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:54,242 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:54,243 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:54,245 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:54,246 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:54,247 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:50:56,646 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:50:58,650 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:54:31,007 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 414779320 Bytes (994050048)
+2026-09-28 19:54:31,242 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 483215032 Bytes (994050048)
+2026-09-28 19:54:31,338 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: SYS
+2026-09-28 19:54:31,338 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: RCC
+2026-09-28 19:54:31,338 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: NVIC
+2026-09-28 19:54:31,339 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: GPIO
+2026-09-28 19:54:31,339 [INFO] CodeGenerator:681 - code generatio: config db path: /home/rmb/Downloads/stm32cubeide-1.9.0-sandbox/plugins/com.st.stm32cube.common.mx_6.5.0.202202251913//db/
+2026-09-28 19:54:31,437 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/license.tmp_save
+2026-09-28 19:54:31,461 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/license.tmp
+2026-09-28 19:54:31,468 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/gpio.tmp_save
+2026-09-28 19:54:31,492 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/gpio.tmp
+2026-09-28 19:54:31,498 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/stm32f4xx_it.c_save
+2026-09-28 19:54:31,526 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/stm32f4xx_it.c
+2026-09-28 19:54:31,527 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/stm32f4xx_it.h_save
+2026-09-28 19:54:31,559 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/stm32f4xx_it.h
+2026-09-28 19:54:31,562 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/stm32f4xx_hal_msp.c_save
+2026-09-28 19:54:31,598 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/stm32f4xx_hal_msp.c
+2026-09-28 19:54:31,599 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/system.tmp_save
+2026-09-28 19:54:31,633 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/system.tmp
+2026-09-28 19:54:31,634 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/stm32f4xx_hal_conf.h_save
+2026-09-28 19:54:31,661 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/stm32f4xx_hal_conf.h
+2026-09-28 19:54:31,667 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/main.h_save
+2026-09-28 19:54:31,694 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/main.h
+2026-09-28 19:54:31,694 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/main.c_save
+2026-09-28 19:54:31,748 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/main.c
+2026-09-28 19:54:31,909 [INFO] ProjectBuilder:2913 - Time for Copy HAL[1] : 6mS.
+2026-09-28 19:54:31,910 [INFO] ProjectBuilder:4015 - Project Generator version: 3.16.0
+2026-09-28 19:54:32,001 [INFO] ConfigFileManager:1287 - The Die is : DIE419
+2026-09-28 19:54:32,528 [INFO] ProjectBuilder:4183 - Time for Generating toolchain IDE Files: 618mS.
+2026-09-28 19:54:32,528 [INFO] ProjectBuilder:2785 - Time for Copy CMSIS : 0mS.
+2026-09-28 19:54:32,528 [INFO] ProjectBuilder:2785 - Time for Copy CMSIS : 0mS.
+2026-09-28 19:58:54,451 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 536488416 Bytes (1013972992)
+2026-09-28 19:58:54,540 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: SYS
+2026-09-28 19:58:54,541 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: RCC
+2026-09-28 19:58:54,541 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: NVIC
+2026-09-28 19:58:54,541 [INFO] BlockDiagram:2740 - set Specific Code input for plugin: GPIO
+2026-09-28 19:58:54,541 [INFO] CodeGenerator:681 - code generatio: config db path: /home/rmb/Downloads/stm32cubeide-1.9.0-sandbox/plugins/com.st.stm32cube.common.mx_6.5.0.202202251913//db/
+2026-09-28 19:58:54,619 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/license.tmp_save
+2026-09-28 19:58:54,641 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/license.tmp
+2026-09-28 19:58:54,646 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/gpio.tmp_save
+2026-09-28 19:58:54,670 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/gpio.tmp
+2026-09-28 19:58:54,676 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/stm32f4xx_it.c_save
+2026-09-28 19:58:54,703 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/stm32f4xx_it.c
+2026-09-28 19:58:54,704 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/stm32f4xx_it.h_save
+2026-09-28 19:58:54,737 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/stm32f4xx_it.h
+2026-09-28 19:58:54,739 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/stm32f4xx_hal_msp.c_save
+2026-09-28 19:58:54,769 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/stm32f4xx_hal_msp.c
+2026-09-28 19:58:54,769 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/system.tmp_save
+2026-09-28 19:58:54,791 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/MXTmpFiles/system.tmp
+2026-09-28 19:58:54,792 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/stm32f4xx_hal_conf.h_save
+2026-09-28 19:58:54,860 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/stm32f4xx_hal_conf.h
+2026-09-28 19:58:54,867 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/main.h_save
+2026-09-28 19:58:54,892 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Inc/main.h
+2026-09-28 19:58:54,893 [INFO] CodeEngine:237 - oldGeneratedFile, /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/main.c_save
+2026-09-28 19:58:54,941 [INFO] CodeEngine:261 - Generated code: /home/rmb/itmo/4/1sem/pvs/lab1/lab1/Core/Src/main.c
+2026-09-28 19:58:55,167 [INFO] ProjectBuilder:2913 - Time for Copy HAL[1] : 6mS.
+2026-09-28 19:58:55,168 [INFO] ProjectBuilder:4015 - Project Generator version: 3.16.0
+2026-09-28 19:58:55,248 [INFO] ConfigFileManager:1287 - The Die is : DIE419
+2026-09-28 19:58:55,714 [INFO] ProjectBuilder:4183 - Time for Generating toolchain IDE Files: 546mS.
+2026-09-28 19:58:55,714 [INFO] ProjectBuilder:2785 - Time for Copy CMSIS : 0mS.
+2026-09-28 19:58:55,714 [INFO] ProjectBuilder:2785 - Time for Copy CMSIS : 0mS.
+2026-09-28 19:59:01,134 [ERROR] ConfigurationRetriever:139 - IOException on connection: Connection reset
+2026-09-28 19:59:08,904 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:59:08,907 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:59:08,909 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:59:08,911 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:59:08,912 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:59:08,914 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:59:08,916 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:59:08,917 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:59:08,918 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:59:08,920 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:59:08,921 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:59:08,922 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 19:59:09,204 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:59:11,213 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 19:59:15,210 [ERROR] AdobePublisher:162 - Exception while opening the connection: java.net.SocketTimeoutException: Read timed out
+2026-09-28 20:03:36,937 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
+2026-09-28 20:03:37,273 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 20:03:37,276 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 20:03:37,278 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 20:03:37,280 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 20:03:37,281 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 20:03:37,283 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 20:03:37,284 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 20:03:37,285 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 20:03:37,287 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 20:03:37,289 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 20:03:37,290 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 20:03:37,291 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] 
+2026-09-28 20:03:38,942 [ERROR] ConfigurationRetriever:139 - IOException on connection: Read timed out
