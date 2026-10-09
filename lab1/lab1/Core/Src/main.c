@@ -54,9 +54,19 @@ static void MX_GPIO_Init(void);
 /* Драйвер светодиода: на этой плате низкий уровень включает светодиод. */
 static void led_write(uint16_t pin, uint8_t on)
 {
-  HAL_GPIO_WritePin(GPIOD, pin, on ? GPIO_PIN_RESET : GPIO_PIN_SET);
-}
+  GPIO_PinState level;
 
+  if (pin == GREEN_PIN)
+  {
+    level = on ? GPIO_PIN_SET : GPIO_PIN_RESET;
+  }
+  else
+  {
+    level = on ? GPIO_PIN_RESET : GPIO_PIN_SET;
+  }
+
+  HAL_GPIO_WritePin(GPIOD, pin, level);
+}
 /* Драйвер кнопки: возвращает 1 один раз после отпускания кнопки. */
 static uint8_t button_poll(uint32_t now, uint32_t *press_length_ms)
 {
@@ -266,7 +276,8 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
 
-  HAL_GPIO_WritePin(GPIOD, GREEN_PIN | RED_PIN | YELLOW_PIN, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOD, GREEN_PIN, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, RED_PIN | YELLOW_PIN, GPIO_PIN_SET);
 
   GPIO_InitStruct.Pin = GPIO_PIN_15;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
