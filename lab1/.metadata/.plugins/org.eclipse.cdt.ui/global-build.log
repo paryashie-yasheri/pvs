@@ -415,3 +415,24 @@ arm-none-eabi-size   lab1.elf
    6800	     32	   1600	   8432	   20f0	lab1.elf
 Finished building: default.size.stdout
  
+16:15:53 **** Build of configuration Debug for project lab1 ****
+make -j14 all 
+arm-none-eabi-size   lab1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6800	     32	   1600	   8432	   20f0	lab1.elf
+Finished building: default.size.stdout
+ 
+16:16:16 **** Incremental Build of configuration Debug for project lab1 ****
+make -j14 all 
+arm-none-eabi-size   lab1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6800	     32	   1600	   8432	   20f0	lab1.elf
+Finished building: default.size.stdout
+ 
+16:16:23 **** Incremental Build of configuration Debug for project lab1 ****
+make -j14 all 
+arm-none-eabi-size   lab1.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6800	     32	   1600	   8432	   20f0	lab1.elf
+Finished building: default.size.stdout
+ 
