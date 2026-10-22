@@ -1,0 +1,26 @@
+# Eclipse and STM32CubeIDE workspace state
+**/.metadata/
+**/.settings/
+**/.mxproject
+
+# Generated build output
+**/Debug/
+**/Release/
+/build/
+cmake-build-*/
+
+# Compiler and linker output
+*.o
+*.d
+*.su
+*.elf
+*.map
+*.list
+*.hex
+*.bin
+*.srec
+st-link_gdbserver_log.txt
+
+# Operating system files
+.DS_Store
+Thumbs.db
