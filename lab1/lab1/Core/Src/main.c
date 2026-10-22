@@ -1,4 +1,5 @@
 #include "main.h"
+#include "io_gpio.h"
 
 #define GREEN_PIN   GPIO_PIN_13
 #define RED_PIN     GPIO_PIN_14
@@ -28,13 +29,13 @@ typedef enum
 
 typedef struct
 {
-  GPIO_PinState raw;
-  GPIO_PinState stable;
+  uint8_t raw;
+  uint8_t stable;
   uint32_t raw_changed_at;
   uint32_t pressed_at;
 } Button;
 
-static Button button = {GPIO_PIN_SET, GPIO_PIN_SET, 0, 0};
+static Button button = {1, 1, 0, 0};
 
 static LockState state = INPUT;
 static uint8_t position = 0;
@@ -49,28 +50,27 @@ static uint32_t pulse_started_at = 0;
 static uint32_t pulse_length_ms = 0;
 
 void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
 
 /* Драйвер светодиода: на этой плате низкий уровень включает светодиод. */
 static void led_write(uint16_t pin, uint8_t on)
 {
-  GPIO_PinState level;
+  uint8_t high;
 
   if (pin == GREEN_PIN)
   {
-    level = on ? GPIO_PIN_SET : GPIO_PIN_RESET;
+    high = on;
   }
   else
   {
-    level = on ? GPIO_PIN_RESET : GPIO_PIN_SET;
+    high = !on;
   }
 
-  HAL_GPIO_WritePin(GPIOD, pin, level);
+  IO_GPIO_Write(GPIOD, pin, high ? pin : 0);
 }
 /* Драйвер кнопки: возвращает 1 один раз после отпускания кнопки. */
 static uint8_t button_poll(uint32_t now, uint32_t *press_length_ms)
 {
-  GPIO_PinState current = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_15);
+  uint8_t current = IO_GPIO_ReadPin(GPIOC, 15);
 
   if (current != button.raw)
   {
@@ -83,7 +83,7 @@ static uint8_t button_poll(uint32_t now, uint32_t *press_length_ms)
   {
     button.stable = current;
 
-    if (current == GPIO_PIN_RESET)
+    if (current == 0)
     {
       button.pressed_at = now;
     }
@@ -155,7 +155,9 @@ int main(void)
 {
   HAL_Init();
   SystemClock_Config();
-  MX_GPIO_Init();
+  IO_GPIO_Init(GPIOC, GPIO_PIN_15, IO_GPIO_INPUT, IO_GPIO_NO_PULL, 0);
+  IO_GPIO_Init(GPIOD, GREEN_PIN | RED_PIN | YELLOW_PIN, IO_GPIO_OUTPUT,
+               IO_GPIO_NO_PULL, RED_PIN | YELLOW_PIN);
 
   while (1)
   {
@@ -269,27 +271,6 @@ void SystemClock_Config(void)
   }
 }
 
-static void MX_GPIO_Init(void)
-{
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOD_CLK_ENABLE();
-
-  HAL_GPIO_WritePin(GPIOD, GREEN_PIN, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(GPIOD, RED_PIN | YELLOW_PIN, GPIO_PIN_SET);
-
-  GPIO_InitStruct.Pin = GPIO_PIN_15;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-  GPIO_InitStruct.Pin = GREEN_PIN | RED_PIN | YELLOW_PIN;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-}
 
 void Error_Handler(void)
 {
