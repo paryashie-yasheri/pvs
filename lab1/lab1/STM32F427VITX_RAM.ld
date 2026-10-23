@@ -37,7 +37,8 @@
 ENTRY(Reset_Handler)
 
 /* Highest address of the user mode stack */
-_estack = ORIGIN(RAM) + LENGTH(RAM); /* end of "RAM" Ram type memory */
+/* Keep a small guard area at SRAM's end for debugger stack inspection. */
+_estack = ORIGIN(RAM) + LENGTH(RAM) - 0x40;
 
 _Min_Heap_Size = 0x200; /* required amount of heap */
 _Min_Stack_Size = 0x400; /* required amount of stack */
