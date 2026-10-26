@@ -46,11 +46,11 @@
 ]
 #v(2cm)
 #align(right)[
-  Выполнил(и): студент(ы) группы #linebreak()
-  ФИО: #line(length: 5cm) #linebreak()
-  ФИО: #line(length: 5cm) #linebreak()
+  Выполнили: студенты группы #line(length: 3cm) #linebreak()
+  Бурейко Р.О. #linebreak()
+  Жук И.А. #linebreak()
   Проверил: #linebreak()
-  #line(length: 5cm)
+  Ключев В.А.
 ]
 #v(1fr)
 #align(center)[Санкт-Петербург, 2026]
