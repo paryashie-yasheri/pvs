@@ -1,246 +1,247 @@
-#include "main.h"
-#include "io_gpio.h"
+#include "main.h" // Подключаем HAL, типы STM32 и прототип Error_Handler из проекта CubeMX.
+#include "io_gpio.h" // Подключаем прототипы собственного драйвера GPIO.
 
-#define GREEN_PIN   GPIO_PIN_13
-#define RED_PIN     GPIO_PIN_14
-#define YELLOW_PIN  GPIO_PIN_15
+#define GREEN_PIN   GPIO_PIN_13 // Маска вывода PD13, к которому подключён зелёный светодиод стенда.
+#define RED_PIN     GPIO_PIN_14 // Маска вывода PD14, к которому подключён красный светодиод стенда.
+#define YELLOW_PIN  GPIO_PIN_15 // Маска вывода PD15, к которому подключён жёлтый светодиод стенда.
 
-#define DEBOUNCE_MS       30U
-#define LONG_PRESS_MS    600U
-#define INPUT_TIMEOUT_MS 12000U
-#define PULSE_MS         180U
-#define OPEN_MS          3000U
-#define LOCK_MS          5000U
-#define BLINK_MS         250U
+#define DEBOUNCE_MS       30U // Сколько миллисекунд состояние кнопки должно оставаться неизменным для подавления дребезга.
+#define LONG_PRESS_MS    600U // Порог длительного нажатия; время берётся из HAL_GetTick.
+#define INPUT_TIMEOUT_MS 12000U // Максимальное время ввода всей последовательности после первого символа.
+#define PULSE_MS         180U // Длительность короткой индикации правильного или ошибочного символа.
+#define OPEN_MS          3000U // Сколько держать зелёный свет после правильного кода.
+#define LOCK_MS          5000U // Длительность блокировки после третьей ошибки.
+#define BLINK_MS         250U // Интервал переключения красного светодиода во время блокировки.
 
 /* 0 — короткое нажатие, 1 — длинное.
-   Код: К Д К К Д Д К Д */
-static const uint8_t secret_code[8] = {0, 1, 0, 0, 1, 1, 0, 1};
+   Код: К Д К К Д Д К Д */ // Комментарий описывает соответствие чисел типу нажатия и заданный вариант кода.
+static const uint8_t secret_code[8] = {0, 1, 0, 0, 1, 1, 0, 1}; // Неизменяемый код из восьми символов, с которым сравнивается ввод.
 
-typedef enum
+typedef enum // Объявляем перечисление, чтобы хранить текущее состояние конечного автомата замка.
 {
-  INPUT,
-  OPEN_AFTER_PULSE,
-  OPEN,
-  LOCK_AFTER_PULSE,
-  LOCK,
-  TIMEOUT_PULSE
-} LockState;
+  INPUT, // Замок принимает символы кода.
+  OPEN_AFTER_PULSE, // Код принят, ждём конца подтверждающего жёлтого импульса.
+  OPEN, // Замок открыт: зелёный свет горит заданное время.
+  LOCK_AFTER_PULSE, // Три ошибки набраны, ждём конца последнего красного импульса.
+  LOCK, // Замок временно заблокирован, красный свет мигает.
+  TIMEOUT_PULSE // Время ввода вышло, ждём конца предупреждающего жёлтого импульса.
+} LockState; // Имя нового типа, используемого переменной state ниже.
 
-typedef struct
+typedef struct // Объединяем переменные, относящиеся к фильтрации и измерению одной кнопки.
 {
-  uint8_t raw;
-  uint8_t stable;
-  uint32_t raw_changed_at;
-  uint32_t pressed_at;
-} Button;
+  uint8_t raw; // Последний мгновенно прочитанный уровень кнопки; его задаёт button_poll через драйвер.
+  uint8_t stable; // Последний подтверждённый после debounce уровень: состояние считается устойчивым.
+  uint32_t raw_changed_at; // Момент HAL-тиков, когда raw последний раз изменился.
+  uint32_t pressed_at; // Момент, когда устойчиво обнаружили нажатие; нужен для измерения его длины.
+} Button; // Имя типа структуры состояния кнопки.
 
-static Button button = {1, 1, 0, 0};
+static Button button = {1, 1, 0, 0}; // Начальное предположение: кнопка отпущена (raw/stable=1); времена обнуляем.
 
-static LockState state = INPUT;
-static uint8_t position = 0;
-static uint8_t mistakes = 0;
-static uint32_t first_input_at = 0;
-static uint32_t state_started_at = 0;
-static uint32_t blink_changed_at = 0;
-static uint8_t red_is_on = 0;
+static LockState state = INPUT; // Сразу после старта конечный автомат находится в режиме ввода.
+static uint8_t position = 0; // Индекс следующего ожидаемого элемента secret_code; меняет lock_accept и сбросы.
+static uint8_t mistakes = 0; // Число ошибочных символов с последнего успешного открытия или снятия блокировки.
+static uint32_t first_input_at = 0; // Время начала текущего ввода, поступает из аргумента now функции lock_accept.
+static uint32_t state_started_at = 0; // HAL-тиковое время начала состояния OPEN или LOCK.
+static uint32_t blink_changed_at = 0; // HAL-тиковое время последнего переключения красного светодиода.
+static uint8_t red_is_on = 0; // Логическое состояние красного светодиода, используемое для мигания.
 
-static uint16_t pulse_pin = 0;
-static uint32_t pulse_started_at = 0;
-static uint32_t pulse_length_ms = 0;
+static uint16_t pulse_pin = 0; // Маска вывода активного импульса; 0 означает, что импульса сейчас нет.
+static uint32_t pulse_started_at = 0; // HAL-тиковое время старта импульса, переданное pulse_start.
+static uint32_t pulse_length_ms = 0; // Длительность активного импульса, переданная pulse_start.
 
-void SystemClock_Config(void);
+void SystemClock_Config(void); // Прототип сгенерированной CubeMX функции настройки частоты тактирования.
 
 /* Драйвер светодиода: на этой плате низкий уровень включает светодиод. */
-static void led_write(uint16_t pin, uint8_t on)
+static void led_write(uint16_t pin, uint8_t on) // pin — маска светодиода, on — логическое состояние от прикладного кода.
 {
-  uint8_t high;
+  uint8_t high; // Физический уровень, который нужно передать GPIO-драйверу после учёта полярности светодиода.
 
-  if (pin == GREEN_PIN)
+  if (pin == GREEN_PIN) // На стенде зелёный свет включается высоким уровнем, в отличие от двух других.
   {
-    high = on;
+    high = on; // Для зелёного логическое «включён» напрямую соответствует уровню 1.
   }
   else
   {
-    high = !on;
+    high = !on; // Для красного и жёлтого логическое «включён» соответствует физическому уровню 0.
   }
 
-  IO_GPIO_Write(GPIOD, pin, high ? pin : 0);
+  IO_GPIO_Write(GPIOD, pin, high ? pin : 0); // Передаём драйверу порт D, маску вывода и маску битов, которые должны стать единицами.
 }
 /* Драйвер кнопки: возвращает 1 один раз после отпускания кнопки. */
-static uint8_t button_poll(uint32_t now, uint32_t *press_length_ms)
+static uint8_t button_poll(uint32_t now, uint32_t *press_length_ms) // now берётся из HAL_GetTick; указатель ведёт к переменной main.
 {
-  uint8_t current = IO_GPIO_ReadPin(GPIOC, 15);
+  uint8_t current = IO_GPIO_ReadPin(GPIOC, 15); // Читаем вывод PC15 через наш драйвер: 0 — кнопка нажата, 1 — отпущена.
 
-  if (current != button.raw)
+  if (current != button.raw) // Обнаружили мгновенный переход; возможно, это дребезг контактов.
   {
-    button.raw = current;
-    button.raw_changed_at = now;
+    button.raw = current; // Сохраняем новое мгновенное значение для следующего опроса.
+    button.raw_changed_at = now; // Запоминаем момент изменения, чтобы начать отсчёт debounce.
   }
 
-  if (current != button.stable &&
-      (uint32_t)(now - button.raw_changed_at) >= DEBOUNCE_MS)
+  if (current != button.stable && // Проверяем, что мгновенное состояние ещё отличается от подтверждённого.
+      (uint32_t)(now - button.raw_changed_at) >= DEBOUNCE_MS) // И что оно держится неизменным не меньше 30 мс.
   {
-    button.stable = current;
+    button.stable = current; // Принимаем состояние как устойчивое после окончания периода подавления дребезга.
 
-    if (current == 0)
+    if (current == 0) // Низкий уровень означает, что кнопка была нажата.
     {
-      button.pressed_at = now;
+      button.pressed_at = now; // Запоминаем время подтверждённого нажатия для будущего расчёта длительности.
     }
     else
     {
-      *press_length_ms = (uint32_t)(now - button.pressed_at);
-      return 1;
+      *press_length_ms = (uint32_t)(now - button.pressed_at); // Записываем длительность в переменную main через переданный указатель.
+      return 1; // Сообщаем вызывающему циклу, что устойчивое отпускание завершило одно нажатие.
     }
   }
 
-  return 0;
+  return 0; // Нажатие не завершилось в этом опросе, поэтому нового символа ещё нет.
 }
 
 /* Драйвер короткого светового импульса без HAL_Delay(). */
-static void pulse_start(uint16_t pin, uint32_t now, uint32_t length_ms)
+static void pulse_start(uint16_t pin, uint32_t now, uint32_t length_ms) // pin, время now и длительность задаёт вызывающая логика замка.
 {
-  if (pulse_pin != 0)
+  if (pulse_pin != 0) // Если старый импульс ещё активен, сначала выключаем его светодиод.
   {
-    led_write(pulse_pin, 0);
+    led_write(pulse_pin, 0); // Выключаем прежний импульс через функцию, учитывающую полярность вывода.
   }
 
-  pulse_pin = pin;
-  pulse_started_at = now;
-  pulse_length_ms = length_ms;
-  led_write(pin, 1);
+  pulse_pin = pin; // Сохраняем маску нового светодиода, чтобы pulse_poll знал, что выключать.
+  pulse_started_at = now; // Сохраняем момент запуска импульса из HAL-тиков.
+  pulse_length_ms = length_ms; // Сохраняем длительность, которую запросил вызывающий код.
+  led_write(pin, 1); // Включаем выбранный светодиод через адаптер полярности.
 }
 
-static void pulse_poll(uint32_t now)
+static void pulse_poll(uint32_t now) // now передаёт основной цикл после чтения HAL_GetTick.
 {
-  if (pulse_pin != 0 &&
-      (uint32_t)(now - pulse_started_at) >= pulse_length_ms)
+  if (pulse_pin != 0 && // Сначала убеждаемся, что импульс действительно запущен.
+      (uint32_t)(now - pulse_started_at) >= pulse_length_ms) // Проверяем, истекла ли его длительность без блокирующей задержки.
   {
-    led_write(pulse_pin, 0);
-    pulse_pin = 0;
+    led_write(pulse_pin, 0); // Выключаем светодиод импульса.
+    pulse_pin = 0; // Сбрасываем маркер, чтобы остальные состояния могли продолжить работу.
   }
 }
 
 /* Принимаем одно короткое или длинное нажатие. */
-static void lock_accept(uint8_t symbol, uint32_t now)
+static void lock_accept(uint8_t symbol, uint32_t now) // symbol вычисляет main из длины нажатия; now берётся из HAL_GetTick.
 {
-  if (position == 0)
+  if (position == 0) // Нулевой индекс означает начало новой попытки ввода.
   {
-    first_input_at = now;
+    first_input_at = now; // Начинаем отсчёт общего 12-секундного таймаута этой попытки.
   }
 
-  if (symbol != secret_code[position])
+  if (symbol != secret_code[position]) // Сверяем принятый символ с ожидаемым элементом заданного кода.
   {
-    position = 0;
-    mistakes++;
-    pulse_start(RED_PIN, now, PULSE_MS);
+    position = 0; // Неверный символ начинает последовательность кода заново.
+    mistakes++; // Увеличиваем число ошибок; счётчик сбрасывается после открытия или блокировки.
+    pulse_start(RED_PIN, now, PULSE_MS); // Показываем ошибку коротким красным импульсом.
 
-    if (mistakes >= 3)
+    if (mistakes >= 3) // После третьей ошибки нужно перейти к временной блокировке.
     {
-      state = LOCK_AFTER_PULSE;
+      state = LOCK_AFTER_PULSE; // Сначала дадим завершиться красному импульсу, затем начнём мигание.
     }
-    return;
+    return; // Ошибочный символ уже обработан; не выполняем ветку правильного символа.
   }
 
-  position++;
-  pulse_start(YELLOW_PIN, now, PULSE_MS);
+  position++; // Совпавший символ увеличивает индекс следующего ожидаемого элемента кода.
+  pulse_start(YELLOW_PIN, now, PULSE_MS); // Короткий жёлтый импульс подтверждает правильный символ.
 
-  if (position == 8)
+  if (position == 8) // В массиве secret_code ровно восемь символов.
   {
-    state = OPEN_AFTER_PULSE;
+    state = OPEN_AFTER_PULSE; // После последнего символа открываем замок по завершении жёлтого импульса.
   }
 }
 
-int main(void)
+int main(void) // Точка входа прошивки; функция запускается после сброса микроконтроллера.
 {
-  HAL_Init();
-  SystemClock_Config();
-  IO_GPIO_Init(GPIOC, GPIO_PIN_15, IO_GPIO_INPUT, IO_GPIO_NO_PULL, 0);
-  IO_GPIO_Init(GPIOD, GREEN_PIN | RED_PIN | YELLOW_PIN, IO_GPIO_OUTPUT,
-               IO_GPIO_NO_PULL, RED_PIN | YELLOW_PIN);
+  HAL_Init(); // Инициализируем HAL, в том числе системный миллисекундный счётчик.
+  SystemClock_Config(); // Вызываем конфигурацию системной частоты, сгенерированную CubeMX ниже.
+  IO_GPIO_Init(GPIOC, GPIO_PIN_15, IO_GPIO_INPUT, IO_GPIO_NO_PULL, 0); // Настраиваем PC15 как вход кнопки без внутренней подтяжки.
+  IO_GPIO_Init(GPIOD, GREEN_PIN | RED_PIN | YELLOW_PIN, IO_GPIO_OUTPUT, // Выбираем порт D и сразу три светодиодных вывода по маске.
+               IO_GPIO_NO_PULL, RED_PIN | YELLOW_PIN); // Подтяжек нет; задаём начальные уровни: зелёный 0, красный/жёлтый 1 (выключены).
 
-  while (1)
+  while (1) // Главный цикл повторяет опрос кнопки, таймеров и автомата состояний бесконечно.
   {
-    uint32_t now = HAL_GetTick();
-    uint32_t press_length_ms = 0;
+    uint32_t now = HAL_GetTick(); // Берём текущее время в миллисекундах из HAL SysTick-счётчика.
+    uint32_t press_length_ms = 0; // Локальная переменная для длительности; button_poll заполнит её при отпускании.
 
-    pulse_poll(now);
-    uint8_t released = button_poll(now, &press_length_ms);
+    pulse_poll(now); // Выключаем импульсный светодиод, если заданное для него время уже прошло.
+    uint8_t released = button_poll(now, &press_length_ms); // Получаем 1 только в цикле устойчивого отпускания; длина записывается по адресу.
 
-    switch (state)
+    switch (state) // Выбираем действие по текущему состоянию, которое меняют функции и ветви ниже.
     {
-      case INPUT:
-        if (position > 0 &&
-            (uint32_t)(now - first_input_at) >= INPUT_TIMEOUT_MS)
+      case INPUT: // В этом состоянии обрабатываем таймаут или очередное законченное нажатие.
+        if (position > 0 && // Таймаут проверяется только после того, как уже принят хотя бы один верный символ.
+            (uint32_t)(now - first_input_at) >= INPUT_TIMEOUT_MS) // Вычитаем время начала попытки из текущего счётчика.
         {
-          position = 0;
-          pulse_start(YELLOW_PIN, now, 1000U);
-          state = TIMEOUT_PULSE;
+          position = 0; // Сбрасываем частично введённый код после превышения общего таймаута.
+          pulse_start(YELLOW_PIN, now, 1000U); // Предупреждаем об истечении времени секундным жёлтым импульсом.
+          state = TIMEOUT_PULSE; // До окончания сигнала ждём в отдельном состоянии.
         }
-        else if (released)
+        else if (released) // Новый символ принимаем только после подтверждённого отпускания кнопки.
         {
-          uint8_t symbol = press_length_ms >= LONG_PRESS_MS ? 1 : 0;
-          lock_accept(symbol, now);
+          uint8_t symbol = press_length_ms >= LONG_PRESS_MS ? 1 : 0; // Кодируем длительность: 1 — длинное нажатие, иначе 0 — короткое.
+          lock_accept(symbol, now); // Передаём символ и время в функцию сравнения с кодом.
         }
-        break;
+        break; // Завершаем ветку INPUT, чтобы не проверять другие состояния в этом цикле.
 
-      case OPEN_AFTER_PULSE:
-        if (pulse_pin == 0)
+      case OPEN_AFTER_PULSE: // Ждём, когда pulse_poll выключит жёлтое подтверждение кода.
+        if (pulse_pin == 0) // Ноль выставляется pulse_poll после окончания активного импульса.
         {
-          led_write(GREEN_PIN, 1);
-          state_started_at = now;
-          state = OPEN;
+          led_write(GREEN_PIN, 1); // Включаем зелёный индикатор принятого кода.
+          state_started_at = now; // Запоминаем момент открытия для отсчёта OPEN_MS.
+          state = OPEN; // Переходим в состояние открытого замка.
         }
-        break;
+        break; // Остальные состояния автомата в этом проходе не обрабатываем.
 
-      case OPEN:
-        if ((uint32_t)(now - state_started_at) >= OPEN_MS)
+      case OPEN: // Замок остаётся открытым, пока не истечёт заданное время.
+        if ((uint32_t)(now - state_started_at) >= OPEN_MS) // Проверяем длительность с момента входа в OPEN.
         {
-          led_write(GREEN_PIN, 0);
-          position = 0;
-          mistakes = 0;
-          state = INPUT;
+          led_write(GREEN_PIN, 0); // Выключаем зелёный свет; для него логическое 0 означает физический уровень 0.
+          position = 0; // Подготавливаем индекс к вводу нового кода.
+          mistakes = 0; // Начинаем новый цикл с нулевым числом ошибок.
+          state = INPUT; // Возвращаем замок в режим ожидания ввода.
         }
-        break;
+        break; // Завершаем обработку OPEN в этом цикле.
 
-      case LOCK_AFTER_PULSE:
-        if (pulse_pin == 0)
+      case LOCK_AFTER_PULSE: // Ждём завершения короткого красного импульса третьей ошибки.
+        if (pulse_pin == 0) // После выключения импульса начинаем более долгую блокировку.
         {
-          state_started_at = now;
-          blink_changed_at = now;
-          red_is_on = 1;
-          led_write(RED_PIN, red_is_on);
-          state = LOCK;
+          state_started_at = now; // Запоминаем начало пятисекундной блокировки.
+          blink_changed_at = now; // Запоминаем начало первого интервала мигания.
+          red_is_on = 1; // Подготавливаем первое состояние мигания: красный включён.
+          led_write(RED_PIN, red_is_on); // Включаем красный индикатор блокировки с учётом его активного низкого уровня.
+          state = LOCK; // Переходим к циклическому миганию и отсчёту блокировки.
         }
-        break;
+        break; // Завершаем эту ветку автомата.
 
-      case LOCK:
-        if ((uint32_t)(now - state_started_at) >= LOCK_MS)
+      case LOCK: // Во время блокировки основной цикл продолжает обновлять время и состояние индикатора.
+        if ((uint32_t)(now - state_started_at) >= LOCK_MS) // Сначала проверяем, закончились ли все пять секунд блокировки.
         {
-          led_write(RED_PIN, 0);
-          red_is_on = 0;
-          position = 0;
-          mistakes = 0;
-          state = INPUT;
+          led_write(RED_PIN, 0); // Выключаем красный свет.
+          red_is_on = 0; // Синхронизируем переменную мигания с выключенным светодиодом.
+          position = 0; // Сбрасываем индекс ввода для новой попытки.
+          mistakes = 0; // Сбрасываем счётчик ошибок после окончания блокировки.
+          state = INPUT; // Разрешаем ввод нового кода.
         }
-        else if ((uint32_t)(now - blink_changed_at) >= BLINK_MS)
+        else if ((uint32_t)(now - blink_changed_at) >= BLINK_MS) // Если блокировка не закончилась, проверяем интервал мигания.
         {
-          blink_changed_at = now;
-          red_is_on = !red_is_on;
-          led_write(RED_PIN, red_is_on);
+          blink_changed_at = now; // Отсчитываем следующий интервал от текущего времени.
+          red_is_on = !red_is_on; // Меняем логическое состояние красного светодиода на противоположное.
+          led_write(RED_PIN, red_is_on); // Применяем новое состояние к выводу PD14 через наш драйвер.
         }
-        break;
+        break; // Не переходим к другим состояниям в том же проходе цикла.
 
-      case TIMEOUT_PULSE:
-        if (pulse_pin == 0)
+      case TIMEOUT_PULSE: // После таймаута ожидаем окончания секундного жёлтого предупреждения.
+        if (pulse_pin == 0) // pulse_poll сбрасывает pulse_pin после выключения предупреждения.
         {
-          state = INPUT;
+          state = INPUT; // После сигнала снова разрешаем ввод кода.
         }
-        break;
+        break; // Завершаем обработку таймаута.
     }
   }
 }
 
+// Дальше идут стандартные функции CubeMX: настройка системного тактирования и аварийная остановка.
 void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
